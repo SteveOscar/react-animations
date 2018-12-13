@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { Spring } from 'react-spring'
+
 class App extends Component {
   render() {
     return (
@@ -9,16 +11,15 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            <Spring from={{ opacity: 0, marginRight: -1000 }} to={{ opacity: 1, marginRight: 0 }}>
+              {props => <div style={props}>hello</div>}
+            </Spring>
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <span>
+            <Spring from={{ opacity: 0, marginLeft: -1000 }} to={{ opacity: 1, marginLeft: 0 }}>
+              {props => <div style={props}>world</div>}
+            </Spring>
+          </span>
         </header>
       </div>
     );
