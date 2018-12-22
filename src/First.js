@@ -11,9 +11,9 @@ export default class First extends React.PureComponent {
         <Transition
           native
           items={this.state.show}
-          from={{ left: 40, position: 'absolute', overflow: 'hidden', height: 0 }}
+          from={{ top: 20, position: 'absolute', overflow: 'hidden', height: 0 }}
           enter={[{ height: 'auto' }]}
-          leave={{ left: 0, height: 0 }}>
+          leave={{ top: 20, height: 10 }}>
           {show =>
             show && (props => <animated.div style={props}>Click</animated.div>)
           }
