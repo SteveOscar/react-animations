@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import First from './First.js'
 import Trails from './Trails.js'
+import Toggler from './Toggler.js'
 import TrailsSecond from './TrailsSecond.js'
 import logo from './logo.svg';
 import './App.css';
+import './index.css';
 
 import { Spring, Transition, Trail, config } from 'react-spring'
 
@@ -12,6 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <Trails />
           <TrailsSecond />
           <div className='circle'></div>
           <First />
@@ -24,12 +27,6 @@ class App extends Component {
             </Spring>
 
           </span>
-          <Spring
-            config={{delay: 2000, duration: 2000}}
-            from={{ number: 0 }}
-            to={{ number: 1 }}>
-            {props => <div>{props.number}</div>}
-          </Spring>
         </header>
       </div>
     );
