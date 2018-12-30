@@ -3,7 +3,6 @@ import { Spring } from 'react-spring'
 
 const TRIANGLE = 'M20,380 L380,380 L380,380 L200,20 L20,380 Z'
 const RECTANGLE = 'M20,20 L20,380 L380,380 L380,20 L20,20 Z'
-const CIRCLE = 'M20,20 L20,380 L380,380 L380,20 L20,20 Z'
 const styles = {
   container: { marginBottom: '-90px', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', willChange: 'background' },
   shape: { width: 300, height: 300, willChange: 'transform' }
@@ -20,8 +19,13 @@ const Content = ({ toggle, color, scale, shape, start, end, stop, rotation, opac
         <path id="path-1" d={shape} />
       </g>
     </svg>
-    <span style={{position: 'absolute', color: '#282c34', opacity: opacity}}>
-      Scarlett <br/> Merry Christmas!!
+    <span style={{position: 'absolute', color: 'white', opacity: opacity, fontFamily: 'Poppins'}}>
+      Experience <br/>
+      <ol style={{textAlign: 'left'}}>
+        <li>Granicus</li>
+        <li>RxRevu</li>
+        <li>Something</li>
+      </ol>
       
     </span>
   </div>
@@ -44,9 +48,9 @@ class Toggler extends React.Component {
           start: toggle ? '#B2DBBF' : '#B2DBBF',
           end: toggle ? '#247BA0' : '#F3FFBD',
           scale: toggle ? 0.2 : 1.5,
-          shape: toggle ? CIRCLE : RECTANGLE,
+          shape: toggle ? TRIANGLE : RECTANGLE,
           stop: toggle ? '0%' : '50%',
-          rotation: toggle ? '0deg' : '45deg',
+          rotation: toggle ? '0deg' : '90deg',
           opacity: toggle ? 0 : 1
         }}
         toggle={this.toggle} // Additional props will be spread over the child

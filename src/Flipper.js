@@ -36,6 +36,7 @@ class Flipper extends React.Component {
           rotate: toggle ? '0deg' : '180deg',
           scale: toggle ? 0.3 : 0.7,
           shape: toggle ? TRIANGLE : RECTANGLE,
+          border: '5px solid black'
         }}
         toggle={this.toggle}
         onRest={() => console.log('done')}>
