@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import First from './First.js'
+import Circle from './Circle.js'
+import Dropdown from './Dropdown.js'
 import Trails from './Trails.js'
 import Toggler from './Toggler.js'
 import Flipper from './Flipper.js'
@@ -21,11 +23,11 @@ const Background = ({ start, end, stop }) => (
 
 class App extends Component {
   state = { toggle: true }
-  
+
   toggle = () => this.setState(state => ({ toggle: !state.toggle }))
 
   clickDetected = () => this.toggle()
-  
+
   render() {
     const toggle = this.state.toggle
     const start = toggle ? '#B2DBBF' : '#B2DBBF'
@@ -43,6 +45,8 @@ class App extends Component {
             }}
             children={Background}
           />
+          <Dropdown />
+          <Circle />
           <Toggler clickDetected={this.clickDetected} />
           Experience
           <br/>
