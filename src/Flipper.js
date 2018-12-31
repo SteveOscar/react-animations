@@ -30,7 +30,7 @@ class Flipper extends React.Component {
         native
         from={{ zIndex: '999', fill: 'black' }}
         to={{
-          fill: toggle ? 'rgba(124,240,10,0.9)' : 'rgba(124,240,10,0.5)',
+          fill: toggle ? 'rgba(124,240,10,0.5)' : 'rgba(0,0,0,0.8)',
           // backgroundColor: toggle ? '#A29B7F' : '#F3FFBD',
           backgroundColor: 'transparent',
           rotate: toggle ? '0deg' : '180deg',
@@ -39,8 +39,7 @@ class Flipper extends React.Component {
           border: '5px solid black',
           zIndex: '999'
         }}
-        toggle={this.toggle}
-        onRest={() => console.log('done')}>
+        toggle={this.toggle}>
         {({ toggle, backgroundColor, fill, rotate, scale, shape }) => (
           <animated.div style={{ ...styles.container, backgroundColor }}>
             <animated.svg

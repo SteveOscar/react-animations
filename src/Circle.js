@@ -1,8 +1,39 @@
 import React from 'react'
-import { Spring, animated } from 'react-spring'
+import { Spring, animated, config } from 'react-spring'
 import './index.css'
 import Flipper from './Flipper.js'
+import DivFlipper from './DivFlipper.js'
 
+const devWidth = 800
+const devHeight = 500
+
+const baseHeight = 120
+const baseHeight1 = baseHeight*.96
+const baseHeight2 = baseHeight*.89
+const baseHeight3 = baseHeight*.81
+const baseHeight4 = baseHeight*.75
+const baseRadius = baseHeight / 2
+const baseRadius1 = baseRadius1*.9
+const baseRadius2 = baseRadius1*.8
+
+// muted
+const colors1 = {
+  first: '#8DA7BE',
+  second: '#554640',
+  third: '#CDE6F5',
+  fourth: '#87919E',
+  fifth: '#707078',
+  sixth: '#32353A',
+}
+// bright
+const colors2 = {
+  first: 'yellow',
+  second: 'white',
+  third: 'blue',
+  fourth: 'red',
+  fifth: 'white',
+  sixth: 'green',
+}
 
 export default class First extends React.PureComponent {
   state = {
@@ -20,9 +51,12 @@ export default class First extends React.PureComponent {
   clickDetected = () => this.toggle()
 
   componentDidMount() {
-    this.interval = setInterval(() => this.toggle1(), 500);
-    this.interval = setInterval(() => this.toggle2(), 600);
-    this.interval = setInterval(() => this.toggle3(), 800);
+    const rand1 = Math.floor(Math.random() * (600 - 500 + 1)) + 500
+    const rand2 = Math.floor(Math.random() * (700 - 600 + 1)) + 600
+    const rand3 = Math.floor(Math.random() * (800 - 700 + 1)) + 700
+    this.interval = setInterval(() => this.toggle1(), rand1);
+    this.interval = setInterval(() => this.toggle2(), rand2);
+    this.interval = setInterval(() => this.toggle3(), rand3);
   }
 
   componentWillUnmount() {
@@ -32,16 +66,20 @@ export default class First extends React.PureComponent {
   render() {
     const { show1, show2, show3 } = this.state
     const { clickDetected } = this.props
+    // change color scheme with this var
+    const colors = colors2
+
     return (
-      <div className="reveals-main" onClick={this.toggle}>
+      <div className="reveals-main" onClick={this.toggle} style={{height: '300px'}}>
 
 
         <Spring
+          config={config.wobbly}
           to={{
-            width: show1 ? 200 : 185,
-            height: show1 ? 200 : 192,
-            borderRadius: show1 ? 200 : 185,
-            background:  show1 ? "radial-gradient(circle, transparent 64%, orange 40%)" : "radial-gradient(circle, transparent 64%, white 40%)",
+            width: show1 ? baseHeight : baseHeight1,
+            height: show1 ? baseHeight : baseHeight2,
+            borderRadius: show1 ? baseRadius : baseRadius2,
+            background:  show1 ? `radial-gradient(circle, transparent 64%, ${colors.first} 40%)` : `radial-gradient(circle, transparent 64%, ${colors.second} 40%)`,
             position: 'absolute',
             opacity: show1 ? 0.6 : 0.9
           }}>
@@ -49,10 +87,10 @@ export default class First extends React.PureComponent {
         </Spring>
         <Spring
           to={{
-            width: show2 ? 182 : 197,
-            height: show2 ? 182 : 204,
-            borderRadius: show2 ? 182 : 204,
-            background:  show2 ? "radial-gradient(circle, transparent 64%, black 40%)" : "radial-gradient(circle, transparent 64%, blue 40%)",
+            width: show2 ? baseHeight4 : baseHeight1,
+            height: show2 ? baseHeight3 : baseHeight1,
+            borderRadius: show2 ? baseRadius : baseRadius2,
+            background:  show2 ? `radial-gradient(circle, transparent 64%, ${colors.third} 40%)` : `radial-gradient(circle, transparent 64%, ${colors.fourth} 40%)`,
             position: 'absolute',
             opacity: show2 ? 0.9 : 0.6
           }}>
@@ -60,16 +98,16 @@ export default class First extends React.PureComponent {
         </Spring>
         <Spring
           to={{
-            width: show3 ? 178 : 200,
-            height: show3 ? 183 : 195,
-            borderRadius: show3 ? 178 : 195,
-            background:  show3 ? "radial-gradient(circle, transparent 64%, red 40%)" : "radial-gradient(circle, transparent 64%, green 40%)",
+            width: show3 ? baseHeight3 : baseHeight,
+            height: show3 ? baseHeight3 : baseHeight1,
+            borderRadius: show3 ? baseRadius : baseRadius2,
+            background:  show3 ? `radial-gradient(circle, transparent 64%, ${colors.fifth} 40%)` : `radial-gradient(circle, transparent 64%, ${colors.sixth} 40%)`,
             position: 'absolute',
             opacity: show3 ? 0.6 : 0.2
           }}>
           {props => <animated.div style={props}></animated.div>}
         </Spring>
-        <Flipper clickDetected={clickDetected} />
+        <DivFlipper clickDetected={clickDetected} />
       </div>
     )
   }

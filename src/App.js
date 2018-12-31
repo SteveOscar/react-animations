@@ -5,6 +5,7 @@ import Dropdown from './Dropdown.js'
 import Trails from './Trails.js'
 import Toggler from './Toggler.js'
 import Flipper from './Flipper.js'
+import DivFlipper from './DivFlipper.js'
 import TrailsSecond from './TrailsSecond.js'
 import logo from './logo.svg';
 import './App.css';
@@ -17,7 +18,7 @@ const styles = {
 }
 const Background = ({ start, end, stop }) => (
   // <div style={{ ...styles.container, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>
-  <div style={{ ...styles.background, background: `linear-gradient(to top, ${start} ${stop}, ${end} 100%)` }}>
+  <div style={{ ...styles.background, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>
   </div>
 )
 
@@ -30,24 +31,24 @@ class App extends Component {
 
   render() {
     const toggle = this.state.toggle
+    const start = toggle ? '#B2DBBF' : '#B2DBBF'
+    const stop = toggle ? '0%' : '50%'
+    const end = toggle ? '#247BA0' : '#F3FFBD'
     return (
       <div className="App">
         <header className="App-header">
           <Spring
+            from={{ background: 'red' }}
             to={{
-              start: toggle ? 'black' : 'white',
-              end: toggle ? 'white' : 'black',
-              stop: toggle ? '90%' : '10%'
+              start: toggle ? '#B2DBBF' : '#B2DBBF',
+              end: toggle ? '#247BA0' : '#F3FFBD',
+              stop: toggle ? '0%' : '50%'
             }}
             children={Background}
           />
           <Dropdown />
           <Circle clickDetected={this.clickDetected} />
-          <Toggler clickDetected={this.clickDetected} />
-          Experience
-          <br/>
-          <br/>
-          <Flipper clickDetected={this.clickDetected} />
+          <Circle clickDetected={this.clickDetected} />
         </header>
       </div>
     );
