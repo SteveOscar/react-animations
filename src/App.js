@@ -17,7 +17,7 @@ const styles = {
 }
 const Background = ({ start, end, stop }) => (
   // <div style={{ ...styles.container, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>
-  <div style={{ ...styles.background, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>
+  <div style={{ ...styles.background, background: `linear-gradient(to top, ${start} ${stop}, ${end} 100%)` }}>
   </div>
 )
 
@@ -30,23 +30,19 @@ class App extends Component {
 
   render() {
     const toggle = this.state.toggle
-    const start = toggle ? '#B2DBBF' : '#B2DBBF'
-    const stop = toggle ? '0%' : '50%'
-    const end = toggle ? '#247BA0' : '#F3FFBD'
     return (
       <div className="App">
         <header className="App-header">
           <Spring
-            from={{ background: 'yellow' }}
             to={{
-              start: toggle ? '#B2DBBF' : '#B2DBBF',
-              end: toggle ? '#247BA0' : '#F3FFBD',
-              stop: toggle ? '0%' : '50%'
+              start: toggle ? 'black' : 'white',
+              end: toggle ? 'white' : 'black',
+              stop: toggle ? '90%' : '10%'
             }}
             children={Background}
           />
           <Dropdown />
-          <Circle />
+          <Circle clickDetected={this.clickDetected} />
           <Toggler clickDetected={this.clickDetected} />
           Experience
           <br/>

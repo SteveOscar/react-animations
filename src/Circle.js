@@ -1,16 +1,23 @@
 import React from 'react'
 import { Spring, animated } from 'react-spring'
 import './index.css'
+import Flipper from './Flipper.js'
+
 
 export default class First extends React.PureComponent {
   state = {
     show1: true,
     show2: true,
-    show3: true
+    show3: true,
+    toggle: true
   }
   toggle1 = e => this.setState(state => ({ show1: !state.show1 }))
   toggle2 = e => this.setState(state => ({ show2: !state.show2 }))
   toggle3 = e => this.setState(state => ({ show3: !state.show3 }))
+
+  toggle = () => this.setState(state => ({ toggle: !state.toggle }))
+
+  clickDetected = () => this.toggle()
 
   componentDidMount() {
     this.interval = setInterval(() => this.toggle1(), 500);
@@ -24,8 +31,11 @@ export default class First extends React.PureComponent {
 
   render() {
     const { show1, show2, show3 } = this.state
+    const { clickDetected } = this.props
     return (
       <div className="reveals-main" onClick={this.toggle}>
+
+
         <Spring
           to={{
             width: show1 ? 200 : 185,
@@ -59,6 +69,7 @@ export default class First extends React.PureComponent {
           }}>
           {props => <animated.div style={props}></animated.div>}
         </Spring>
+        <Flipper clickDetected={clickDetected} />
       </div>
     )
   }

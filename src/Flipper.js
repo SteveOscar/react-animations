@@ -28,15 +28,16 @@ class Flipper extends React.Component {
     return (
       <Spring
         native
-        from={{ fill: 'black' }}
+        from={{ zIndex: '999', fill: 'black' }}
         to={{
-          fill: toggle ? '#247BA0' : '#70C1B3',
+          fill: toggle ? 'rgba(124,240,10,0.9)' : 'rgba(124,240,10,0.5)',
           // backgroundColor: toggle ? '#A29B7F' : '#F3FFBD',
           backgroundColor: 'transparent',
           rotate: toggle ? '0deg' : '180deg',
           scale: toggle ? 0.3 : 0.7,
           shape: toggle ? TRIANGLE : RECTANGLE,
-          border: '5px solid black'
+          border: '5px solid black',
+          zIndex: '999'
         }}
         toggle={this.toggle}
         onRest={() => console.log('done')}>
@@ -68,4 +69,3 @@ class Flipper extends React.Component {
 }
 
 export default Flipper
-
