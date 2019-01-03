@@ -38,10 +38,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Spring
-            from={{ background: 'red' }}
             to={{
-              start: toggle ? '#B2DBBF' : '#B2DBBF',
-              end: toggle ? '#247BA0' : '#F3FFBD',
+              // start: toggle ? '#B2DBBF' : '#B2DBBF',
+              // end: toggle ? '#247BA0' : '#F3FFBD',
+              start: toggle ? 'black' : 'black',
+              end: toggle ? 'black' : 'black',
               stop: toggle ? '0%' : '50%'
             }}
             children={Background}

@@ -4,14 +4,11 @@ import './index.css'
 import Flipper from './Flipper.js'
 import DivFlipper from './DivFlipper.js'
 
-const devWidth = 800
-const devHeight = 500
-
-const baseHeight = 120
-const baseHeight1 = baseHeight*.96
-const baseHeight2 = baseHeight*.89
-const baseHeight3 = baseHeight*.81
-const baseHeight4 = baseHeight*.75
+const baseHeight = 100
+const baseHeight1 = baseHeight*.97
+const baseHeight2 = baseHeight*.92
+const baseHeight3 = baseHeight*.85
+const baseHeight4 = baseHeight*.9
 const baseRadius = baseHeight / 2
 const baseRadius1 = baseRadius1*.9
 const baseRadius2 = baseRadius1*.8
@@ -36,21 +33,22 @@ const colors2 = {
 }
 
 export default class First extends React.PureComponent {
-  state = {
-    show1: true,
-    show2: true,
-    show3: true,
-    toggle: true
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: 0,
+      height: 0,
+      show1: true,
+      show2: true,
+      show3: true,
+      toggle: true
+    }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
-  toggle1 = e => this.setState(state => ({ show1: !state.show1 }))
-  toggle2 = e => this.setState(state => ({ show2: !state.show2 }))
-  toggle3 = e => this.setState(state => ({ show3: !state.show3 }))
-
-  toggle = () => this.setState(state => ({ toggle: !state.toggle }))
-
-  clickDetected = () => this.toggle()
-
+  
   componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
     const rand1 = Math.floor(Math.random() * (600 - 500 + 1)) + 500
     const rand2 = Math.floor(Math.random() * (700 - 600 + 1)) + 600
     const rand3 = Math.floor(Math.random() * (800 - 700 + 1)) + 700
@@ -60,11 +58,24 @@ export default class First extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    clearInterval(this.interval)
+    window.removeEventListener('resize', this.updateWindowDimensions)
   }
 
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+  
+  toggle1 = e => this.setState(state => ({ show1: !state.show1 }))
+  toggle2 = e => this.setState(state => ({ show2: !state.show2 }))
+  toggle3 = e => this.setState(state => ({ show3: !state.show3 }))
+
+  toggle = () => this.setState(state => ({ toggle: !state.toggle }))
+
+  clickDetected = () => this.toggle()
+
   render() {
-    const { show1, show2, show3 } = this.state
+    const { show1, show2, show3, width, height } = this.state
     const { clickDetected } = this.props
     // change color scheme with this var
     const colors = colors2
@@ -74,7 +85,7 @@ export default class First extends React.PureComponent {
 
 
         <Spring
-          config={config.wobbly}
+          config={config.slow}
           to={{
             width: show1 ? baseHeight : baseHeight1,
             height: show1 ? baseHeight : baseHeight2,
@@ -86,6 +97,7 @@ export default class First extends React.PureComponent {
           {props => <animated.div style={props}></animated.div>}
         </Spring>
         <Spring
+          config={config.slow}
           to={{
             width: show2 ? baseHeight4 : baseHeight1,
             height: show2 ? baseHeight3 : baseHeight1,
@@ -97,6 +109,7 @@ export default class First extends React.PureComponent {
           {props => <animated.div style={props}></animated.div>}
         </Spring>
         <Spring
+          config={config.slow}
           to={{
             width: show3 ? baseHeight3 : baseHeight,
             height: show3 ? baseHeight3 : baseHeight1,
@@ -107,7 +120,7 @@ export default class First extends React.PureComponent {
           }}>
           {props => <animated.div style={props}></animated.div>}
         </Spring>
-        <DivFlipper clickDetected={clickDetected} />
+        <DivFlipper width={width} height={height} clickDetected={clickDetected} />
       </div>
     )
   }

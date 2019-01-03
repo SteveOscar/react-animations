@@ -16,8 +16,10 @@ export default class First extends React.PureComponent {
 
   render() {
     const { toggle } = this.state
+    const { width, height } = this.props
     const rotate = toggle ? '0deg' : '180deg'
     const scale = toggle ? 0.3 : 0.7
+    console.log('WIDTH: ', width)
     return (
       <div className="reveals-main" onClick={this.toggle}>
         <Spring
@@ -26,11 +28,11 @@ export default class First extends React.PureComponent {
           }}
           to={{
             zIndex: 999,
-            width: toggle ? 110 : 150,
+            width: toggle ? 110 : (width*.5),
             height: toggle ? 110 : 150,
             borderRadius: toggle ? 110 : 30,
-            background:  toggle ? "white" : "black",
-            opacity: toggle ? 0.2 : 0.96,
+            background:  toggle ? "white" : "white",
+            opacity: toggle ? 0 : 0.9,
             position: toggle ? 'inherit' : 'absolute',
             transform: toggle ? 'translate3d(0px,0,0) scale(1) rotateX(0deg)' : 'translate3d(0,0,0) scale(2) rotateX(180deg)'
           }}>
