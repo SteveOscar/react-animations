@@ -32,7 +32,7 @@ const colors2 = {
   sixth: 'green',
 }
 
-export default class First extends React.PureComponent {
+export default class Circle extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +45,7 @@ export default class First extends React.PureComponent {
     }
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
-  
+
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -65,7 +65,7 @@ export default class First extends React.PureComponent {
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
-  
+
   toggle1 = e => this.setState(state => ({ show1: !state.show1 }))
   toggle2 = e => this.setState(state => ({ show2: !state.show2 }))
   toggle3 = e => this.setState(state => ({ show3: !state.show3 }))

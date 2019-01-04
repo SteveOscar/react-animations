@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import First from './First.js'
 import Circle from './Circle.js'
 import Dropdown from './Dropdown.js'
-import Trails from './Trails.js'
-import Toggler from './Toggler.js'
-import Flipper from './Flipper.js'
-import DivFlipper from './DivFlipper.js'
-import TrailsSecond from './TrailsSecond.js'
-import logo from './logo.svg';
+import MainCircle from './components/MainCircle'
 import './App.css';
 import './index.css';
 
@@ -41,15 +35,14 @@ class App extends Component {
             to={{
               // start: toggle ? '#B2DBBF' : '#B2DBBF',
               // end: toggle ? '#247BA0' : '#F3FFBD',
-              start: toggle ? 'black' : 'black',
+              start: toggle ? 'blue' : 'black',
               end: toggle ? 'black' : 'black',
               stop: toggle ? '0%' : '50%'
             }}
             children={Background}
           />
           <Dropdown />
-          <Circle clickDetected={this.clickDetected} />
-          <Circle clickDetected={this.clickDetected} />
+          <MainCircle clickDetected={this.clickDetected} />
         </header>
       </div>
     );
