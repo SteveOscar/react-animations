@@ -8,7 +8,7 @@ class Dropdown extends Component {
     return (
 
         <Spring
-          config={{ tension: 180, friction: 12, friction: 120 }}
+          config={{ tension: 100, friction: 110 }}
           from={{ opacity: 0, marginTop: -1000 }}
           to={{ opacity: 1, marginTop: 0 }}
         >

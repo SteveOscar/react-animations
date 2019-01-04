@@ -35,8 +35,8 @@ class App extends Component {
             to={{
               // start: toggle ? '#B2DBBF' : '#B2DBBF',
               // end: toggle ? '#247BA0' : '#F3FFBD',
-              start: toggle ? 'blue' : 'black',
-              end: toggle ? 'black' : 'black',
+              start: toggle ? 'red' : 'black',
+              end: toggle ? 'blue' : 'black',
               stop: toggle ? '0%' : '50%'
             }}
             children={Background}

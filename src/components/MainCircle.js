@@ -93,7 +93,7 @@ export default class MainCicle extends React.PureComponent {
             fontFamily: 'ZCOOL XiaoWei',
             fontSize: '5em'
           }}>
-          {props => <animated.span style={props}>Steve Olson</animated.span>}
+          {props => <animated.span style={props}>Hello World</animated.span>}
         </Spring>
       </div>
     )
